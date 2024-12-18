@@ -1,0 +1,1 @@
+# project-event-management-platform
