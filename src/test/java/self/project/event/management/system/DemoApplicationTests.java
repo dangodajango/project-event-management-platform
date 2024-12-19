@@ -1,4 +1,4 @@
-package com.example.demo;
+package self.project.event.management.system;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
