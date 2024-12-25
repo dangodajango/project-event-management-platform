@@ -1,8 +1,12 @@
-package self.project.eventmanagement.account.web.validation;
+package self.project.eventmanagement.account.web.validation.password;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class PasswordValidator implements ConstraintValidator<Password, String> {
 
     private int minLength;

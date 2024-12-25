@@ -3,9 +3,9 @@ package self.project.eventmanagement.account.web.dto;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import self.project.eventmanagement.account.web.validation.Password;
+import self.project.eventmanagement.account.web.validation.password.Password;
 
-import static self.project.eventmanagement.account.web.validation.PasswordConstraint.STRONG;
+import static self.project.eventmanagement.account.web.validation.password.PasswordConstraint.STRONG;
 
 public record CreateAccount(
 

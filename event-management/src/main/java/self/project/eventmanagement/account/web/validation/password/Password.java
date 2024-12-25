@@ -1,4 +1,6 @@
-package self.project.eventmanagement.account.web.validation;
+package self.project.eventmanagement.account.web.validation.password;
+
+import jakarta.validation.Constraint;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -8,6 +10,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Retention(RUNTIME)
 @Target(FIELD)
+@Constraint(validatedBy = PasswordValidator.class)
 public @interface Password {
 
     int minLength() default 7;

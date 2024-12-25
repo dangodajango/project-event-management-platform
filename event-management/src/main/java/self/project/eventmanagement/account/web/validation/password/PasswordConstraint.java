@@ -1,4 +1,4 @@
-package self.project.eventmanagement.account.web.validation;
+package self.project.eventmanagement.account.web.validation.password;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
