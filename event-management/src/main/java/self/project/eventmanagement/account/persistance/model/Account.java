@@ -36,7 +36,7 @@ public class Account {
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(name = "password_salt", nullable = false)
     private String passwordSalt;
 
     @Column(name = "created_at", nullable = false)

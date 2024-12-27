@@ -7,6 +7,9 @@ public class OptionalNotBlankValidator implements ConstraintValidator<OptionalNo
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value == null || value.isBlank();
+        if (value == null) {
+            return true;
+        }
+        return !value.isBlank();
     }
 }

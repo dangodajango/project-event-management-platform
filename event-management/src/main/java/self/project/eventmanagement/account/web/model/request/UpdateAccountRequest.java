@@ -1,4 +1,4 @@
-package self.project.eventmanagement.account.web.dto;
+package self.project.eventmanagement.account.web.model.request;
 
 import self.project.eventmanagement.account.web.validation.common.OptionalNotBlank;
 import self.project.eventmanagement.account.web.validation.email.OptionalEmail;
@@ -6,7 +6,7 @@ import self.project.eventmanagement.account.web.validation.password.OptionalPass
 
 import static self.project.eventmanagement.account.web.validation.password.PasswordConstraint.STRONG;
 
-public record UpdateAccount(
+public record UpdateAccountRequest(
 
         @OptionalNotBlank(message = "The name should not be blank")
         String name,

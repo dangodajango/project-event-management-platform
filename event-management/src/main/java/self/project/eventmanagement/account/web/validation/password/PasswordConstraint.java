@@ -15,7 +15,7 @@ public enum PasswordConstraint {
      *   <li>(?=.*\d): Ensures at least one digit.</li>
      * </ul>
      */
-    LENIENT("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)$", ""),
+    LENIENT("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", ""),
 
     /**
      * This regular expression enforces the following password requirements:
@@ -26,7 +26,7 @@ public enum PasswordConstraint {
      *   <li>(?=.*[!@#$%^&*(),.?":{}|<>]): Ensures at least one special character.</li>
      * </ul>
      */
-    STRONG("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>])$", "");
+    STRONG("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>]).*$", "");
 
     private final String constraintsRegex;
 

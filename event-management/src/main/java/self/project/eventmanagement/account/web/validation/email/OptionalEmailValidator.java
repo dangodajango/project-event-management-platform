@@ -7,7 +7,10 @@ import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 public class OptionalEmailValidator implements ConstraintValidator<OptionalEmail, String> {
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value == null || new EmailValidator().isValid(value, context);
+    public boolean isValid(String email, ConstraintValidatorContext context) {
+        if (email == null) {
+            return true;
+        }
+        return new EmailValidator().isValid(email, context);
     }
 }

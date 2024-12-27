@@ -1,13 +1,13 @@
-package self.project.eventmanagement.account.web.dto;
+package self.project.eventmanagement.account.web.model.request;
 
-import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import self.project.eventmanagement.account.web.validation.common.OptionalNotBlank;
 import self.project.eventmanagement.account.web.validation.password.Password;
 
 import static self.project.eventmanagement.account.web.validation.password.PasswordConstraint.STRONG;
 
-public record CreateAccount(
+public record CreateAccountRequest(
 
         @NotBlank(message = "The name should be present and not blank")
         String name,
@@ -16,7 +16,7 @@ public record CreateAccount(
         @Email(message = "Should be a valid email")
         String email,
 
-        @Nullable
+        @OptionalNotBlank
         String profilePictureUrl,
 
         @NotBlank(message = "The password should be present and not blank")

@@ -23,7 +23,7 @@ public class PasswordValidator implements ConstraintValidator<Password, String> 
     }
 
     private boolean isPasswordSmallerThanMinRequiredPasswordSize(String password, ConstraintValidatorContext context) {
-        if (password.length() > minLength) {
+        if (password.length() >= minLength) {
             return true;
         }
         context.disableDefaultConstraintViolation();
@@ -33,7 +33,7 @@ public class PasswordValidator implements ConstraintValidator<Password, String> 
     }
 
     private boolean isPasswordBiggerThanMaxAllowedPasswordSize(String password, ConstraintValidatorContext context) {
-        if (password.length() < maxLength) {
+        if (password.length() <= maxLength) {
             return true;
         }
         context.disableDefaultConstraintViolation();
