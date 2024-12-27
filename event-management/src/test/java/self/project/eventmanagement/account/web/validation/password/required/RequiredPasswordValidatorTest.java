@@ -19,24 +19,36 @@ class RequiredPasswordValidatorTest {
     void should_return_false_given_null_password() {
         // Given
         String nullPassword = null;
+        ConstraintValidatorContext.ConstraintViolationBuilder builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
+
+        when(context.buildConstraintViolationWithTemplate("The password should be present and not blank"))
+                .thenReturn(builder);
 
         // When
         boolean isValid = requiredPasswordValidator.isValid(nullPassword, context);
 
         // Then
         assertThat(isValid).isFalse();
+        verify(context).disableDefaultConstraintViolation();
+        verify(builder).addConstraintViolation();
     }
 
     @Test
     void should_return_false_given_blank_password() {
         // Given
         String blankPassword = " ";
+        ConstraintValidatorContext.ConstraintViolationBuilder builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
+
+        when(context.buildConstraintViolationWithTemplate("The password should be present and not blank"))
+                .thenReturn(builder);
 
         // When
         boolean isValid = requiredPasswordValidator.isValid(blankPassword, context);
 
         // Then
         assertThat(isValid).isFalse();
+        verify(context).disableDefaultConstraintViolation();
+        verify(builder).addConstraintViolation();
     }
 
     @Test

@@ -11,14 +11,17 @@ import self.project.eventmanagement.account.web.validation.password.PasswordVali
 @AllArgsConstructor
 public class RequiredPasswordValidator implements ConstraintValidator<RequiredPassword, String> {
 
-    private PasswordValidator.PasswordValidationDataWrapper passwordValidationData;
+    private PasswordValidator.PasswordValidationDataWrapper dataWrapper;
 
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
         if (password == null || password.isBlank()) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("The password should be present and not blank")
+                    .addConstraintViolation();
             return false;
         }
-        return PasswordValidator.isPasswordValid(password, context, passwordValidationData);
+        return PasswordValidator.isPasswordValid(password, context, dataWrapper);
     }
 
     @Override
@@ -26,6 +29,6 @@ public class RequiredPasswordValidator implements ConstraintValidator<RequiredPa
         int minLength = constraintAnnotation.minLength();
         int maxLength = constraintAnnotation.maxLength();
         PasswordConstraint passwordConstraint = constraintAnnotation.passwordConstraint();
-        passwordValidationData = new PasswordValidator.PasswordValidationDataWrapper(minLength, maxLength, passwordConstraint);
+        dataWrapper = new PasswordValidator.PasswordValidationDataWrapper(minLength, maxLength, passwordConstraint);
     }
 }

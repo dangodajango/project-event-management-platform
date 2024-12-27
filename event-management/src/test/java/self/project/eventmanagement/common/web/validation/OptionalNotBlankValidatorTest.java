@@ -1,4 +1,4 @@
-package self.project.eventmanagement.account.web.validation.common;
+package self.project.eventmanagement.common.web.validation;
 
 import jakarta.validation.ConstraintValidatorContext;
 import org.junit.jupiter.api.Test;
