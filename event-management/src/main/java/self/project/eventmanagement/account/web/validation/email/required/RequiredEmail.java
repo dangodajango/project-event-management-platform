@@ -1,4 +1,4 @@
-package self.project.eventmanagement.account.web.validation.password;
+package self.project.eventmanagement.account.web.validation.email.required;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -11,14 +11,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Retention(RUNTIME)
 @Target(FIELD)
-@Constraint(validatedBy = OptionalPasswordValidator.class)
-public @interface OptionalPassword {
-
-    int minLength() default 7;
-
-    int maxLength() default 14;
-
-    PasswordConstraint passwordConstraint() default PasswordConstraint.STRONG;
+@Constraint(validatedBy = RequiredEmailValidator.class)
+public @interface RequiredEmail {
 
     /**
      * Defines the default error message to be used when the validation fails.
@@ -35,7 +29,7 @@ public @interface OptionalPassword {
      *
      * @return the default error message
      */
-    String message() default "Should be a valid password";
+    String message() default "The field should not be blank";
 
     /**
      * Specifies the validation groups this constraint belongs to.

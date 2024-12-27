@@ -1,7 +1,8 @@
-package self.project.eventmanagement.account.web.validation.password;
+package self.project.eventmanagement.account.web.validation.password.optional;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import self.project.eventmanagement.account.web.validation.password.PasswordConstraint;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -9,36 +10,15 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-/**
- * This annotation should be applied to DTOs containing a password field.
- * It validates the password based on the data configured in the annotation's fields.
- */
 @Retention(RUNTIME)
 @Target(FIELD)
-@Constraint(validatedBy = PasswordValidator.class)
-public @interface Password {
+@Constraint(validatedBy = OptionalPasswordValidator.class)
+public @interface OptionalPassword {
 
-    /**
-     * Specifies the minimum required length for the password.
-     * <p>
-     * The default value is 7. This value can be customized when applying the annotation.
-     */
     int minLength() default 7;
 
-    /**
-     * Specifies the maximum allowed length for the password.
-     * <p>
-     * The default value is 14. This value can be customized when applying the annotation.
-     */
     int maxLength() default 14;
 
-    /**
-     * Defines the constraints that the password must follow, such as requirements for
-     * uppercase and lowercase letters, digits, or special characters.
-     * <p>
-     * The default value is {@link PasswordConstraint#STRONG}, which enforces stricter password rules.
-     * This can be customized to apply different levels of password strength requirements.
-     */
     PasswordConstraint passwordConstraint() default PasswordConstraint.STRONG;
 
     /**

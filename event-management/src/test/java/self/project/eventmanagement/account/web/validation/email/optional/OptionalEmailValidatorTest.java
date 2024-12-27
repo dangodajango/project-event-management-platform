@@ -1,4 +1,4 @@
-package self.project.eventmanagement.account.web.validation.email;
+package self.project.eventmanagement.account.web.validation.email.optional;
 
 import jakarta.validation.ConstraintValidatorContext;
 import org.junit.jupiter.api.Test;

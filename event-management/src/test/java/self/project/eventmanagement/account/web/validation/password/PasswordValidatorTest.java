@@ -18,11 +18,11 @@ class PasswordValidatorTest {
     void test_should_return_true_given_lenient_constraint_and_valid_password() {
         // Given
         String validPassword = "ABcde123";
-        PasswordValidator passwordValidator = new PasswordValidator(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.LENIENT);
+        PasswordValidator.PasswordValidationDataWrapper passwordValidationDataWrapper = new PasswordValidator.PasswordValidationDataWrapper(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.LENIENT);
         ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
 
         // When
-        boolean isValid = passwordValidator.isValid(validPassword, context);
+        boolean isValid = PasswordValidator.isPasswordValid(validPassword, context, passwordValidationDataWrapper);
 
         // Then
         assertThat(isValid).isTrue();
@@ -63,7 +63,7 @@ class PasswordValidatorTest {
     @ValueSource(strings = {"ABCDE123", "abcde123", "Abcdefgh"})
     void test_should_return_false_given_lenient_constraint_and_invalid_password(String invalidPassword) {
         // Given
-        PasswordValidator passwordValidator = new PasswordValidator(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.LENIENT);
+        PasswordValidator.PasswordValidationDataWrapper passwordValidationDataWrapper = new PasswordValidator.PasswordValidationDataWrapper(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.LENIENT);
         ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
         ConstraintValidatorContext.ConstraintViolationBuilder builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
 
@@ -71,7 +71,7 @@ class PasswordValidatorTest {
                 .thenReturn(builder);
 
         // When
-        boolean isValid = passwordValidator.isValid(invalidPassword, context);
+        boolean isValid = PasswordValidator.isPasswordValid(invalidPassword, context, passwordValidationDataWrapper);
 
         // Then
         assertThat(isValid).isFalse();
@@ -83,11 +83,11 @@ class PasswordValidatorTest {
     void test_should_return_true_given_strong_constraint_and_valid_password() {
         // Given
         String validPassword = "Abc123!@#";
-        PasswordValidator passwordValidator = new PasswordValidator(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.LENIENT);
+        PasswordValidator.PasswordValidationDataWrapper passwordValidationDataWrapper = new PasswordValidator.PasswordValidationDataWrapper(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.LENIENT);
         ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
 
         // When
-        boolean isValid = passwordValidator.isValid(validPassword, context);
+        boolean isValid = PasswordValidator.isPasswordValid(validPassword, context, passwordValidationDataWrapper);
 
         // Then
         assertThat(isValid).isTrue();
@@ -135,7 +135,7 @@ class PasswordValidatorTest {
     @ValueSource(strings = {"ABC123!@#", "abc123!@#", "Abcdefgh!@#", "Abc123defg"})
     void test_should_return_false_given_strong_constraint_and_invalid_password(String invalidPassword) {
         // Given
-        PasswordValidator passwordValidator = new PasswordValidator(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.STRONG);
+        PasswordValidator.PasswordValidationDataWrapper passwordValidationDataWrapper = new PasswordValidator.PasswordValidationDataWrapper(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.STRONG);
         ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
         ConstraintValidatorContext.ConstraintViolationBuilder builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
 
@@ -143,7 +143,7 @@ class PasswordValidatorTest {
                 .thenReturn(builder);
 
         // When
-        boolean isValid = passwordValidator.isValid(invalidPassword, context);
+        boolean isValid = PasswordValidator.isPasswordValid(invalidPassword, context, passwordValidationDataWrapper);
 
         // Then
         assertThat(isValid).isFalse();
@@ -155,7 +155,7 @@ class PasswordValidatorTest {
     void test_should_return_false_given_password_smaller_than_minimum_length() {
         // Given
         String smallerPassword = "1234";
-        PasswordValidator passwordValidator = new PasswordValidator(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.STRONG);
+        PasswordValidator.PasswordValidationDataWrapper passwordValidationDataWrapper = new PasswordValidator.PasswordValidationDataWrapper(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.STRONG);
         ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
         ConstraintValidatorContext.ConstraintViolationBuilder builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
 
@@ -163,7 +163,7 @@ class PasswordValidatorTest {
                 .thenReturn(builder);
 
         // When
-        boolean isValid = passwordValidator.isValid(smallerPassword, context);
+        boolean isValid = PasswordValidator.isPasswordValid(smallerPassword, context, passwordValidationDataWrapper);
 
         // Then
         assertThat(isValid).isFalse();
@@ -175,7 +175,7 @@ class PasswordValidatorTest {
     void test_should_return_false_given_password_bigger_than_maximum_length() {
         // Given
         String biggerPassword = "123456891011121314";
-        PasswordValidator passwordValidator = new PasswordValidator(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.STRONG);
+        PasswordValidator.PasswordValidationDataWrapper passwordValidationDataWrapper = new PasswordValidator.PasswordValidationDataWrapper(DEFAULT_MIN_LENGTH, DEFAULT_MAX_LENGTH, PasswordConstraint.STRONG);
         ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
         ConstraintValidatorContext.ConstraintViolationBuilder builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
 
@@ -183,7 +183,7 @@ class PasswordValidatorTest {
                 .thenReturn(builder);
 
         // When
-        boolean isValid = passwordValidator.isValid(biggerPassword, context);
+        boolean isValid = PasswordValidator.isPasswordValid(biggerPassword, context, passwordValidationDataWrapper);
 
         // Then
         assertThat(isValid).isFalse();

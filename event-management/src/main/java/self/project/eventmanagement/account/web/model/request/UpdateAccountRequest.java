@@ -1,8 +1,8 @@
 package self.project.eventmanagement.account.web.model.request;
 
 import self.project.eventmanagement.account.web.validation.common.OptionalNotBlank;
-import self.project.eventmanagement.account.web.validation.email.OptionalEmail;
-import self.project.eventmanagement.account.web.validation.password.OptionalPassword;
+import self.project.eventmanagement.account.web.validation.email.optional.OptionalEmail;
+import self.project.eventmanagement.account.web.validation.password.optional.OptionalPassword;
 
 import static self.project.eventmanagement.account.web.validation.password.PasswordConstraint.STRONG;
 
